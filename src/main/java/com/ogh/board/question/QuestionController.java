@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,7 @@ public class QuestionController {
     // public String questionCreate() {
     //     return "question_form";
     // }
-    @RequestMapping(value = "/create")
+    @GetMapping(value = "/create")
     public String questionCreate(QuestionForm questionForm) {
         // QuestionForm questionForm : question_form.html에서 사용될 객체
         return "question_form";
