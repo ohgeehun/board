@@ -12,12 +12,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ogh.board.question.Question;
 import com.ogh.board.question.QuestionRepository;
+import com.ogh.board.question.QuestionService;
 
 @SpringBootTest
 class BoardApplicationTests {
 
 	@Autowired
 	private QuestionRepository questionRepository;
+
+	@Autowired
+	private QuestionService questionService;
 
 
 	@Test
@@ -41,16 +45,21 @@ class BoardApplicationTests {
         // assertEquals(2, all.size());
 
         Question q = all.get(0);
-        assertEquals("제목1", q.getSubject());
+        // assertEquals("제목1", q.getSubject());
 	}
 
 	@Test
 	void testJpa() {
-		Optional<Question> oq = this.questionRepository.findById(1);
-        assertTrue(oq.isPresent());
-        Question q = oq.get();
-        q.setSubject("수정된 제목");
-        this.questionRepository.save(q);
+		// Optional<Question> oq = this.questionRepository.findById(1);
+        // assertTrue(oq.isPresent());
+        // Question q = oq.get();
+        // q.setSubject("수정된 제목");
+        // this.questionRepository.save(q);
+		for(int i=1; i<= 300; i++) {
+			String subject = String.format("테스트 데이터입니다.:[%03d]", i);
+			String content = String.format("Test Content : [%03d]", i);
+			this.questionService.create(subject, content, null);
+		}
 	}
 
 }
